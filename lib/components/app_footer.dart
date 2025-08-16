@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AppFooter extends StatelessWidget {
   const AppFooter({super.key});
@@ -27,28 +28,73 @@ class AppFooter extends StatelessWidget {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            children: [
-              Image.asset('assets/icons8-facebook-48.png', height: 30),
-              const SizedBox(width: 10),
-              const Text("Facebook", style: TextStyle(color: Colors.white70)),
-            ],
+          InkWell(
+            onTap: () =>
+                _launchUrl('https://www.tiktok.com/@decouvrirdubai.com'),
+            child: Row(
+              children: [
+                Image.asset(
+                  'assets/social-media.png',
+                  height: 30,
+                  width: 30,
+                  filterQuality: FilterQuality.high,
+                ),
+                const SizedBox(width: 10),
+                const Text("TikTok", style: TextStyle(color: Colors.white70)),
+              ],
+            ),
           ),
           const SizedBox(height: 8),
-          Row(
-            children: [
-              Image.asset('assets/icons8-instagram-48.png', height: 30),
-              const SizedBox(width: 10),
-              const Text("Instagram", style: TextStyle(color: Colors.white70)),
-            ],
+          InkWell(
+            onTap: () =>
+                _launchUrl('https://www.instagram.com/decouvrirdubai/reels/'),
+            child: Row(
+              children: [
+                Image.asset(
+                  'assets/icons8-instagram-48.png',
+                  height: 30,
+                  width: 30,
+                  filterQuality: FilterQuality.high,
+                ),
+                const SizedBox(width: 10),
+                const Text(
+                  "Instagram",
+                  style: TextStyle(color: Colors.white70),
+                ),
+              ],
+            ),
           ),
           const SizedBox(height: 8),
-          Row(
-            children: [
-              Image.asset('assets/icons8-linkedin-48.png', height: 30),
-              const SizedBox(width: 10),
-              const Text("LinkedIn", style: TextStyle(color: Colors.white70)),
-            ],
+          InkWell(
+            onTap: () => _launchUrl('https://x.com/DecouvrirDubai'),
+            child: Row(
+              children: [
+                Image.asset(
+                  'assets/twitter.png',
+                  height: 30,
+                  width: 30,
+                  filterQuality: FilterQuality.high,
+                ),
+                const SizedBox(width: 10),
+                const Text("Twitter", style: TextStyle(color: Colors.white70)),
+              ],
+            ),
+          ),
+          const SizedBox(height: 8),
+          InkWell(
+            onTap: () => _launchUrl('https://www.youtube.com/@DecouvrirDubai'),
+            child: Row(
+              children: [
+                Image.asset(
+                  'assets/youtube.png',
+                  height: 30,
+                  width: 30,
+                  filterQuality: FilterQuality.high,
+                ),
+                const SizedBox(width: 10),
+                const Text("Youtube", style: TextStyle(color: Colors.white70)),
+              ],
+            ),
           ),
         ],
       );
@@ -62,7 +108,7 @@ class AppFooter extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text(
-                  "Victoria Real Estate UAE",
+                  "MEDIA AND INVESTMENTS AGENCY : IGDS Ltd",
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -70,14 +116,19 @@ class AppFooter extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 8),
+                const Text("Address:", style: TextStyle(color: Colors.white70)),
                 const Text(
-                  "Dubai, United Arab Emirates",
-                  style: TextStyle(color: Colors.white70),
+                  "Suite C, Level 7, World Trust Tower,",
+                  style: TextStyle(
+                    color: Colors.white70,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 const Text(
-                  "Email: contact@victoriauae.com",
+                  "50 Stanley Street,\n Central, Hong Kong\nReg. Number : 77774361",
                   style: TextStyle(color: Colors.white70),
                 ),
+
                 const SizedBox(height: 16),
                 _storeButtons(),
                 const SizedBox(height: 16),
@@ -95,21 +146,25 @@ class AppFooter extends StatelessWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: const [
-                        Text(
-                          "Victoria Real Estate UAE",
+                        const Text(
+                          "MEDIA AND INVESTMENTS AGENCY : IGDS Ltd",
                           style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
                           ),
                         ),
-                        SizedBox(height: 8),
-                        Text(
-                          "Dubai, United Arab Emirates",
-                          style: TextStyle(color: Colors.white70),
+                        const SizedBox(height: 8),
+
+                        const Text(
+                          "Suite C, Level 7, World Trust Tower,",
+                          style: TextStyle(
+                            color: Colors.white70,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                        Text(
-                          "Email: contact@victoriauae.com",
+                        const Text(
+                          "50 Stanley Street,\nCentral, Hong Kong\nReg. Number : 77774361",
                           style: TextStyle(color: Colors.white70),
                         ),
                       ],
@@ -123,5 +178,12 @@ class AppFooter extends StatelessWidget {
               ],
             ),
     );
+  }
+
+  Future<void> _launchUrl(String url) async {
+    final Uri uri = Uri.parse(url);
+    if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
+      throw Exception('Could not launch $url');
+    }
   }
 }
