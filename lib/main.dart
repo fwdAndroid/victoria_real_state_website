@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:victoria_real_state_website/pages/about_us_page.dart';
+import 'package:victoria_real_state_website/pages/contact_us_page.dart';
 import 'package:victoria_real_state_website/pages/home_page.dart';
 import 'package:victoria_real_state_website/pages/privacy_policy_page.dart';
 
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
         '/': (_) => const HomePage(),
         '/about': (_) => const AboutUsPage(),
         '/privacy': (_) => const PrivacyPolicyPage(),
+        '/contactUs': (_) => const ContactUsPage(),
       },
     );
   }

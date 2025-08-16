@@ -24,7 +24,7 @@ class _HeaderState extends State<Header> {
 
   void _scrollListener() {
     setState(() {
-      _scrollOffset = Scrollable.of(context)?.position.pixels ?? 0;
+      _scrollOffset = Scrollable.of(context).position.pixels ?? 0;
     });
   }
 
@@ -66,6 +66,8 @@ class _HeaderState extends State<Header> {
                 _navButton(context, "Privacy Policy", '/privacy'),
                 const SizedBox(width: 40),
                 _navButton(context, "FAQ", '/about'),
+                const SizedBox(width: 40),
+                _navButton(context, "Contact Us", '/contactUs'),
                 const SizedBox(width: 40),
               ],
       ),
@@ -114,6 +116,13 @@ class _HeaderState extends State<Header> {
               onTap: () {
                 Navigator.pop(context);
                 Navigator.pushNamed(context, '/privacy');
+              },
+            ),
+            ListTile(
+              title: const Text("Contact Us"),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, '/contactUs');
               },
             ),
           ],
