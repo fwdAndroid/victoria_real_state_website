@@ -82,10 +82,7 @@ class _PrivacyPolicyPageState extends State<PrivacyPolicyPage>
                 child: SizedBox(
                   width: double.infinity,
                   height: 250,
-                  child: Image.network(
-                    'https://images.unsplash.com/photo-1600585154340-be6161a56a0c',
-                    fit: BoxFit.cover,
-                  ),
+                  child: Image.asset('assets/image7.jpg', fit: BoxFit.cover),
                 ),
               ),
             ),

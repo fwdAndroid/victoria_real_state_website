@@ -54,10 +54,7 @@ class _AboutUsPageState extends State<AboutUsPage> {
             SizedBox(
               width: double.infinity,
               height: 200,
-              child: Image.network(
-                'https://images.unsplash.com/photo-1600585154340-be6161a56a0c',
-                fit: BoxFit.cover,
-              ),
+              child: Image.asset('assets/image6.jpg', fit: BoxFit.cover),
             ),
             const SizedBox(height: 24),
             // FAQ Section Title
