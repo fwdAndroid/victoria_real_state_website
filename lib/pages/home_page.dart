@@ -74,10 +74,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             SizedBox(
               width: double.infinity,
               height: isMobile ? 300 : 500,
-              child: Image.network(
-                "https://images.unsplash.com/photo-1600585154340-be6161a56a0c",
-                fit: BoxFit.cover,
-              ),
+              child: Image.asset("assets/image.jpg", fit: BoxFit.cover),
             ),
             Container(
               width: double.infinity,
@@ -105,23 +102,26 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                         ],
                       ),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment:
-                          CrossAxisAlignment.center, // center images vertically
-                      children: [
-                        Image.asset(
-                          'assets/icons8-google-play-48.png',
-                          height: 180, // make both images same height
-                          fit: BoxFit.cover,
-                        ),
-                        const SizedBox(width: 20), // distance between badges
-                        Image.asset(
-                          'assets/icons8-app-store-48.png',
-                          height: 100, // match the other image
-                          fit: BoxFit.cover,
-                        ),
-                      ],
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment
+                            .center, // center images vertically
+                        children: [
+                          Image.asset(
+                            'assets/game.png',
+                            height: 60, // make both images same height
+                            fit: BoxFit.cover,
+                          ),
+                          const SizedBox(width: 20), // distance between badges
+                          Image.asset(
+                            'assets/app-store.png',
+                            height: 60, // match the other image
+                            fit: BoxFit.cover,
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
@@ -157,7 +157,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               borderRadius: const BorderRadius.vertical(
                 top: Radius.circular(12),
               ),
-              child: Image.network(
+              child: Image.asset(
                 imageUrl,
                 width: double.infinity,
                 height: 200,
@@ -198,19 +198,19 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         'title': 'Premium Apartments',
         'content':
             'Explore our exclusive luxury apartments across Dubai with stunning city views.',
-        'image': 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c',
+        'image': 'assets/image1.jpg',
       },
       {
         'title': 'Villas & Estates',
         'content':
             'Find your dream villa or estate with private pools and beautiful gardens.',
-        'image': 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c',
+        'image': 'assets/image2.jpg',
       },
       {
         'title': 'Commercial Properties',
         'content':
             'Invest in Dubai’s premium commercial properties with great ROI potential.',
-        'image': 'https://images.unsplash.com/photo-1570129477492-45c003edd2be',
+        'image': 'assets/image3.jpg',
       },
     ];
 
@@ -220,12 +220,12 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         'title': 'Data Privacy',
         'content':
             'We ensure that your personal and property information is fully protected.',
-        'image': 'https://images.unsplash.com/photo-1599423300746-b62533397364',
+        'image': 'assets/image4.jpg',
       },
       {
         'title': 'No Third-Party Sharing',
         'content': 'We do not sell or share your data with any third parties.',
-        'image': 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c',
+        'image': 'assets/image5.jpg',
       },
     ];
 
