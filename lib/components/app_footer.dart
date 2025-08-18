@@ -30,8 +30,8 @@ class AppFooter extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Expanded(flex: 3, child: _logoAndApp()),
-                    Expanded(flex: 2, child: _pagesSection(context)),
-                    Expanded(flex: 2, child: _socialSection()),
+                    Expanded(flex: 3, child: _pagesSection(context)),
+                    Expanded(flex: 1, child: _socialSection()),
                   ],
                 ),
           const SizedBox(height: 30),
@@ -53,7 +53,7 @@ class AppFooter extends StatelessWidget {
             Image.asset("assets/logo.png", height: 40),
             const SizedBox(width: 8),
             const Text(
-              "Victoria Real Estate",
+              "VICTORIA UAE REAL ESTATE",
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,

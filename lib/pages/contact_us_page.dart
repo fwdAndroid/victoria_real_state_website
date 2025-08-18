@@ -211,7 +211,7 @@ ${_messageController.text}
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              "Our Office",
+              "Our Address",
               style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
@@ -221,22 +221,23 @@ ${_messageController.text}
                 Icon(Icons.location_on, color: Colors.blueGrey),
                 SizedBox(width: 10),
                 Expanded(
-                  child: Text(
-                    "Office 123, Business Bay\nDubai, United Arab Emirates",
-                    style: TextStyle(fontSize: 16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "MEDIA AND INVESTMENTS AGENCY :IGDS Ltd ",
+                        style: TextStyle(fontSize: 16),
+                      ),
+                      Text(
+                        "Suite C, Level 7, World Trust Tower, \n50 Stanley Street, \nCentral, Hong Kong\nReg. Number : 77774361",
+                      ),
+                    ],
                   ),
                 ),
               ],
             ),
             const SizedBox(height: 16),
-            Row(
-              children: const [
-                Icon(Icons.phone, color: Colors.blueGrey),
-                SizedBox(width: 10),
-                Text("+971 55 123 4567", style: TextStyle(fontSize: 16)),
-              ],
-            ),
-            const SizedBox(height: 16),
+
             InkWell(
               onTap: () => launchUrl(Uri.parse("mailto:igdslimited@gmail.com")),
               child: Row(
