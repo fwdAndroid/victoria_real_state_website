@@ -22,7 +22,6 @@ class _ContactUsPageState extends State<ContactUsPage> {
       scheme: 'mailto',
       path: 'igdslimited@gmail.com',
       queryParameters: {
-        'subject': 'New Contact Request from ${_nameController.text}',
         'body':
             '''
 Name: ${_nameController.text}
