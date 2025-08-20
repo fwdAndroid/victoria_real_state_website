@@ -39,7 +39,7 @@ class _HowToUsePageState extends State<HowToUsePage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Victoria UAE Real Estate",
+                    "VICTORIA UAE REAL ESTATE",
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
@@ -50,6 +50,7 @@ class _HowToUsePageState extends State<HowToUsePage> {
                   Text(
                     "Your AI-powered real estate assistant.\nFollow these simple steps to get started.",
                     style: TextStyle(fontSize: 16, color: Colors.white70),
+                    textAlign: TextAlign.center,
                   ),
                 ],
               ),

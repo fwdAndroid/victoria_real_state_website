@@ -11,9 +11,12 @@ class AppFooter extends StatelessWidget {
 
     return Container(
       color: Colors.grey[100],
-      padding: const EdgeInsets.all(24),
+      padding: const EdgeInsets.only(top: 60, left: 24, right: 24, bottom: 24),
       child: Column(
         children: [
+          // Circular avatar image at top center
+
+          // Footer content
           isMobile
               ? Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -34,6 +37,7 @@ class AppFooter extends StatelessWidget {
                     Expanded(flex: 1, child: _socialSection()),
                   ],
                 ),
+
           const SizedBox(height: 30),
           const Divider(),
           const SizedBox(height: 12),
@@ -50,7 +54,10 @@ class AppFooter extends StatelessWidget {
       children: [
         Row(
           children: [
-            Image.asset("assets/logo.png", height: 40),
+            CircleAvatar(
+              radius: 30,
+              backgroundImage: AssetImage("assets/avatar.png"), // your avatar
+            ),
             const SizedBox(width: 8),
             const Text(
               "VICTORIA UAE REAL ESTATE",
@@ -137,11 +144,7 @@ class AppFooter extends StatelessWidget {
           "Instagram",
           "https://www.instagram.com/decouvrirdubai/reels/",
         ),
-        _socialLink(
-          FontAwesomeIcons.x,
-          "TikTok",
-          "https://x.com/DecouvrirDubai",
-        ),
+        _socialLink(FontAwesomeIcons.x, "X", "https://x.com/DecouvrirDubai"),
       ],
     );
   }
