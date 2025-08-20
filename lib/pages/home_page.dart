@@ -74,7 +74,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             SizedBox(
               width: double.infinity,
               height: isMobile ? 300 : 500,
-              child: Image.asset("assets/image.jpg", fit: BoxFit.cover),
+              child: Image.asset("assets/image2.jpg", fit: BoxFit.cover),
             ),
             Container(
               width: double.infinity,

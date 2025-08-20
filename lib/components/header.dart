@@ -1,4 +1,6 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Header extends StatefulWidget implements PreferredSizeWidget {
   const Header({super.key});
@@ -7,7 +9,7 @@ class Header extends StatefulWidget implements PreferredSizeWidget {
   State<Header> createState() => _HeaderState();
 
   @override
-  Size get preferredSize => const Size.fromHeight(70);
+  Size get preferredSize => const Size.fromHeight(80);
 }
 
 class _HeaderState extends State<Header> {
@@ -18,7 +20,7 @@ class _HeaderState extends State<Header> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ScrollableState? scrollableState = Scrollable.of(context);
-      scrollableState?.position.addListener(_scrollListener);
+      scrollableState.position.addListener(_scrollListener);
     });
   }
 
@@ -33,97 +35,160 @@ class _HeaderState extends State<Header> {
     final isMobile = MediaQuery.of(context).size.width < 800;
 
     // Shrink height and adjust opacity based on scroll
-    double appBarHeight = 70 - (_scrollOffset / 15);
-    appBarHeight = appBarHeight.clamp(50, 70);
-    double bgOpacity = (_scrollOffset / 150).clamp(0, 1);
+    double appBarHeight = 80 - (_scrollOffset / 20);
+    appBarHeight = appBarHeight.clamp(60, 80);
+    double bgOpacity = (_scrollOffset / 200).clamp(0.3, 1);
 
     return AnimatedContainer(
-      duration: const Duration(milliseconds: 200),
+      duration: const Duration(milliseconds: 250),
       height: appBarHeight,
-      color: Colors.white.withOpacity(bgOpacity),
-      child: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: bgOpacity > 0.2 ? 4 : 0,
-        automaticallyImplyLeading: false,
-        leading: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Image.asset('assets/logo.png', height: 50),
-        ),
-        title: null, // no title, navigation moves to actions
-        actions: isMobile
-            ? [
-                IconButton(
-                  icon: const Icon(Icons.menu, color: Color(0xFF00843D)),
-                  onPressed: () {
-                    _showMobileMenu(context);
-                  },
-                ),
-              ]
-            : [
-                _navButton(context, "Home", '/'),
-                const SizedBox(width: 40),
-
-                _navButton(context, "Privacy Policy", '/privacy'),
-                const SizedBox(width: 40),
-                _navButton(context, "FAQ", '/about'),
-                const SizedBox(width: 40),
-                _navButton(context, "Contact Us", '/contactUs'),
-                const SizedBox(width: 40),
+      child: ClipRRect(
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.white.withOpacity(bgOpacity),
+              boxShadow: [
+                if (bgOpacity > 0.4)
+                  BoxShadow(
+                    color: Colors.black12,
+                    blurRadius: 10,
+                    offset: const Offset(0, 4),
+                  ),
               ],
+            ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: Row(
+                children: [
+                  Image.asset('assets/logo.png', height: 50),
+                  const Spacer(),
+                  if (!isMobile)
+                    Row(
+                      children: [
+                        _navButton(context, "Home", '/'),
+                        //// _navButton(context, "Privacy Policy", '/privacy'),
+                        _navButton(context, "FAQ", '/about'),
+                        _navButton(context, "How To Use", '/howto'),
+
+                        _navButton(context, "Contact Us", '/contactUs'),
+                      ],
+                    ),
+                  if (isMobile)
+                    IconButton(
+                      icon: const Icon(
+                        Icons.menu,
+                        color: Color(0xFF00843D),
+                        size: 28,
+                      ),
+                      onPressed: () => _showMobileMenu(context),
+                    ),
+                ],
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }
 
   Widget _navButton(BuildContext context, String title, String route) {
-    return TextButton(
-      onPressed: () {
-        if (ModalRoute.of(context)?.settings.name != route) {
-          Navigator.pushNamed(context, route);
-        }
-      },
-      style: TextButton.styleFrom(
-        foregroundColor: const Color(0xFF00843D),
-        textStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: _HoverUnderlineButton(
+        title: title,
+        route: route,
+        color: const Color(0xFF00843D),
       ),
-      child: Text(title),
     );
   }
 
   void _showMobileMenu(BuildContext context) {
     showModalBottomSheet(
+      backgroundColor: Colors.transparent,
       context: context,
       builder: (context) => Container(
-        color: Colors.white,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(16),
+        ),
+        padding: const EdgeInsets.symmetric(vertical: 16),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            ListTile(
-              title: const Text("Home"),
-              onTap: () {
-                Navigator.pop(context);
-                Navigator.pushNamed(context, '/');
-              },
+            _mobileMenuTile("Home", '/'),
+            _mobileMenuTile("FAQ", '/about'),
+            _mobileMenuTile("Privacy Policy", '/privacy'),
+            _mobileMenuTile("Contact Us", '/contactUs'),
+            _mobileMenuTile("How To Use", '/howto'),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _mobileMenuTile(String title, String route) {
+    return ListTile(
+      title: Text(title, style: const TextStyle(fontWeight: FontWeight.w600)),
+      onTap: () {
+        Navigator.pop(context);
+        Navigator.pushNamed(context, route);
+      },
+    );
+  }
+}
+
+// Hover underline button for desktop navigation
+class _HoverUnderlineButton extends StatefulWidget {
+  final String title;
+  final String route;
+  final Color color;
+
+  const _HoverUnderlineButton({
+    required this.title,
+    required this.route,
+    required this.color,
+  });
+
+  @override
+  State<_HoverUnderlineButton> createState() => _HoverUnderlineButtonState();
+}
+
+class _HoverUnderlineButtonState extends State<_HoverUnderlineButton> {
+  bool _isHovering = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      onEnter: (_) => setState(() => _isHovering = true),
+      onExit: (_) => setState(() => _isHovering = false),
+      child: GestureDetector(
+        onTap: () {
+          if (ModalRoute.of(context)?.settings.name != widget.route) {
+            Navigator.pushNamed(context, widget.route);
+          }
+        },
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              widget.title,
+              style: GoogleFonts.poppins(
+                fontSize: 18,
+                fontWeight: FontWeight.w600,
+                color: widget.color,
+              ),
             ),
-            ListTile(
-              title: const Text("FAQ"),
-              onTap: () {
-                Navigator.pop(context);
-                Navigator.pushNamed(context, '/about');
-              },
-            ),
-            ListTile(
-              title: const Text("Privacy Policy"),
-              onTap: () {
-                Navigator.pop(context);
-                Navigator.pushNamed(context, '/privacy');
-              },
-            ),
-            ListTile(
-              title: const Text("Contact Us"),
-              onTap: () {
-                Navigator.pop(context);
-                Navigator.pushNamed(context, '/contactUs');
-              },
+            const SizedBox(height: 4),
+            AnimatedContainer(
+              duration: const Duration(milliseconds: 200),
+              height: 2,
+              width: _isHovering ? 30 : 0,
+              decoration: BoxDecoration(
+                color: widget.color,
+                borderRadius: BorderRadius.circular(1),
+              ),
             ),
           ],
         ),

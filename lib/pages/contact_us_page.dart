@@ -238,22 +238,22 @@ ${_messageController.text}
             ),
             const SizedBox(height: 16),
 
-            InkWell(
-              onTap: () => launchUrl(Uri.parse("mailto:igdslimited@gmail.com")),
-              child: Row(
-                children: const [
-                  Icon(Icons.email, color: Colors.blueGrey),
-                  SizedBox(width: 10),
-                  Text(
-                    "igdslimited@gmail.com",
-                    style: TextStyle(
-                      fontSize: 16,
-                      decoration: TextDecoration.underline,
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            // InkWell(
+            //   onTap: () => launchUrl(Uri.parse("mailto:igdslimited@gmail.com")),
+            //   child: Row(
+            //     children: const [
+            //       Icon(Icons.email, color: Colors.blueGrey),
+            //       SizedBox(width: 10),
+            //       Text(
+            //         "igdslimited@gmail.com",
+            //         style: TextStyle(
+            //           fontSize: 16,
+            //           decoration: TextDecoration.underline,
+            //         ),
+            //       ),
+            //     ],
+            //   ),
+            // ),
           ],
         ),
       ),

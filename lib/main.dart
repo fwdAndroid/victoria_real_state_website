@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:victoria_real_state_website/pages/about_us_page.dart';
 import 'package:victoria_real_state_website/pages/contact_us_page.dart';
 import 'package:victoria_real_state_website/pages/home_page.dart';
+import 'package:victoria_real_state_website/pages/how_to_use_page.dart';
 import 'package:victoria_real_state_website/pages/privacy_policy_page.dart';
 
 void main() {
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Victoria UAE Real Estate',
+      title: 'Victoria Real Estate UAE',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.blue, useMaterial3: true),
       initialRoute: '/',
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
         '/about': (_) => const AboutUsPage(),
         '/privacy': (_) => const PrivacyPolicyPage(),
         '/contactUs': (_) => const ContactUsPage(),
+        '/howto': (_) => const HowToUsePage(),
       },
     );
   }
